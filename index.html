@@ -1,22 +1,52 @@
 <!DOCTYPE html>
-<html>
-<body>
+    <html>
 
-<h2>Example.com - Employee Portal</h2>
-<h3>Current shipment stats</h3>
-    <!--<iframe
-        width="100%"
-        height="100%"
-        src="https://ap-northeast-2.quicksight.aws.amazon.com/sn/embed/share/accounts/754412047960/dashboards/ac6d344f-3a2e-48af-ab35-4065fca596e4?directory_alias=octank-test-admin">
-    </iframe>-->
-    
-    <iframe
-        width="100%"
-        height="800px"
-        src="https://ap-southeast-2.quicksight.aws.amazon.com/embed/fb82dfa69cf94d49b6afab276ac6409b/dashboards/ac6d344f-3a2e-48af-ab35-4065fca596e4?code=AYABeDKc6tvFzp2w0uhFgVjiV8oAAAABAAdhd3Mta21zAFBhcm46YXdzOmttczphcC1zb3V0aGVhc3QtMjo4OTc4MjcyODg1NDM6a2V5LzZlZjA0ZTAyLTIyZmMtNDFmYS1iZGY1LTg0Y2Q3OWY0MmYxOQC4AQIBAHhX6ZKnPVQVUuyM9UJkwzWegGjiPSRaUkrok3gD2wIANwHIKkR0EGH7jXsBx4aG2WN3AAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMyqEj9w3sVJcf1pp-AgEQgDvNjKhwQxp_UQs2ePaurs-4eWLGSca0Pz-FMf05SrdnQNp_ldaAqKdZX2job2BZnhKUS2AdXWqUP04DfgIAAAAADAAAEAAAAAAAAAAAAAAAAAD7Lq3qDtF2c0feK5sApK45_____wAAAAEAAAAAAAAAAAAAAAEAAADrlnaxEY5d0ZawjFCthgtGlExnhvUzy0f8PbyDr_ngeRajYCMuNbRw16AratgdLuYM3wwSUi9AIy-dJBdlJvITMWWIG-JK_UAXuK74ZgPZUPqqeSHqp26tAqiM1mfIlmTiT7GSc55VfRwMI-IWYbL8FyQTH2-xcQ7cLac9edbEQxSVKaGM7vGpQYOtihtqtHyxp87PNazzSgW0y-ZJ3gQ2yO9S7GBABvTf4O1R6xiVQ8Xt_oouVW62Em9pT4BEO5CO39L0MZ0MXVKMM69ovJBRLKQsbk0DzDmfwQc90n7ER6tvocfe3g6RBa1ColfD9VYgETVMLh44wf8wNPs%3D&identityprovider=quicksight&isauthcode=true&undoRedoDisabled=true&resetDisabled=true">
-    </iframe>
-            
-  
-  
-</body>
-</html>
+    <head>
+        <title>QuickSight Console Embedding</title>
+        <script src="https://unpkg.com/amazon-quicksight-embedding-sdk@1.0.15/dist/quicksight-embedding-js-sdk.min.js"></script>
+        <script type="text/javascript">
+            var session
+
+            function onError(payload) {
+                console.log("Do something when the session fails loading");
+            }
+
+            function embedSession() {
+                var containerDiv = document.getElementById("embeddingContainer");
+                var options = {
+                    // replace this dummy url with the one generated via embedding API
+                    url: "https://ap-southeast-2.quicksight.aws.amazon.com/embed/66d9f48cab314471b366d1a66a7e3eeb/dashboards/ac6d344f-3a2e-48af-ab35-4065fca596e4?code=AYABeBgxjP6MkmPa42WpVy55z4YAAAABAAdhd3Mta21zAFBhcm46YXdzOmttczphcC1zb3V0aGVhc3QtMjo4OTc4MjcyODg1NDM6a2V5LzZlZjA0ZTAyLTIyZmMtNDFmYS1iZGY1LTg0Y2Q3OWY0MmYxOQC4AQIBAHhX6ZKnPVQVUuyM9UJkwzWegGjiPSRaUkrok3gD2wIANwFP5Zrzr9cnt40lE7_p-zI6AAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQM54if5C_MkQDEiU0nAgEQgDusTyJWEgIRfDTq3fUgz2mC2uBXMGcYH5nnmlhWlgM-c-vUtIJRtRYsW7OPJqXJwqwf8WzBOTYQN5lQpQIAAAAADAAAEAAAAAAAAAAAAAAAAABifu5d2p12i6QHzvWmcM6c_____wAAAAEAAAAAAAAAAAAAAAEAAADrvM1Qg3EPuVfj0H64U8iFO2k7dcqQP1r_J86rBsrU0CkAruYgTrLxMqz2tbhAMnIb_IIGvZjy5ptNMF2mtZKehN8n3OzHlsMjdLL5MNJqea1yzXcV_3Bgp1K77c7cR_9zhIeBsvDqrimHMkPkY-KgR0yiJVoVUN1l0R63E2HkNaAYSjioZ40H_L8L7J3Jl74HpGLvZXbQsbaAk8Ei8GH6jZE468qM_XQlEu-mKnl0WXEBeuZKIEXYcdDZryg9jhciDEuW6gNjiYAl7iRDMcJ-GbWll1C3bTONhZrAdYoHAebZqBWBkQxDN90p3pJkDyuzta8d0aHnwjMipeo%3D&identityprovider=quicksight&isauthcode=true", // replace this dummy url with the one generated via embedding API
+                    container: containerDiv,
+                    parameters: {
+                        country: "United States"
+                    },
+                    scrolling: "no",
+                    height: "700px",
+                    width: "1000px",
+                    locale: "en-US",
+                    footerPaddingEnabled: true,
+                    defaultEmbeddingVisualType: "TABLE", // this option only applies to QuickSight console embedding and is not used for dashboard embedding
+                };
+                session = QuickSightEmbedding.embedSession(options);
+                session.on("error", onError);
+            }
+
+            function onCountryChange(obj) {
+                session.setParameters({country: obj.value});
+            }
+        </script>
+    </head>
+
+    <body onload="embedSession()">
+        <span>
+            <label for="country">Country</label>
+            <select id="country" name="country" onchange="onCountryChange(this)">
+                <option value="United States">United States</option>
+                <option value="Mexico">Mexico</option>
+                <option value="Canada">Canada</option>
+            </select>
+        </span>
+        <div id="embeddingContainer"></div>
+    </body>
+
+    </html>
